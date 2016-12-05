@@ -65,18 +65,15 @@ public class viewAllCounselorsController implements Initializable {
         cellNumCol.setCellValueFactory(new PropertyValueFactory<>("cellPhoneNum"));
         counselorIDCol.setCellValueFactory(new PropertyValueFactory<>("counselorID"));
         hireDateCol.setCellValueFactory(new PropertyValueFactory<>("hireDate"));
-        degreeTypeCol.setCellValueFactory(new PropertyValueFactory<>("degreeType"));
-        degreeLevelCol.setCellValueFactory(new PropertyValueFactory<>("degreeLevel"));
         yearsOfExpCol.setCellValueFactory(new PropertyValueFactory<>("yearsOfExp"));
 
 
         counselorData = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT p.*,c.c_id,yearsOfExp,hireDate,d.educationLevel,d.type FROM bjoyne2db.Person p \n" +
-                    "JOIN bjoyne2db.counselor c ON c.SSN = p.SSN \n" +
-                    "JOIN bjoyne2db.degree d ON d.counselID = c.c_id\n" +
-                    "WHERE p.type='counselor';";
+            String query = "SELECT p.*,c.c_id,yearsOfExp,hireDate FROM Person p \n" +
+                    "JOIN counselor c ON c.SSN = p.SSN \n" +
+                    "WHERE p.type='counselor'";
             PreparedStatement ps = connection.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -85,18 +82,16 @@ public class viewAllCounselorsController implements Initializable {
                 counselor = new Counselor();
                 counselor.setCounselorID(rs.getInt("c_ID"));
                 counselor.setSSN(rs.getInt("SSN"));
-                counselor.setDateOfBirth(rs.getDate("dateOfBirth"));
                 counselor.setFirstName(rs.getString("fName"));
                 counselor.setMiddleInit(rs.getString("mInit"));
                 counselor.setLastName(rs.getString("lName"));
+                counselor.setDateOfBirth(rs.getDate("dateOfBirth"));
                 counselor.setSex(rs.getString("sex"));
                 counselor.setAddress(rs.getString("address"));
                 counselor.setHousePhoneNum(rs.getString("housePhoneNum"));
                 counselor.setCellPhoneNum(rs.getString("cellPhoneNum"));
                 counselor.setHireDate(rs.getDate("hireDate"));
                 counselor.setYearsOfExp(rs.getInt("yearsOfExp"));
-                counselor.setDegreeType(rs.getString("d.type"));
-                counselor.setDegreeLevel(rs.getString("d.educationLevel"));
                 counselorData.add(counselor);
             }
 

@@ -31,6 +31,7 @@ import java.sql.*;
 
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -52,6 +53,7 @@ public class ClientGuiController implements Initializable{
     @FXML private TextField insPolicyNumber;
     @FXML private Label message;
 
+    @FXML private DatePicker dateOfBirthPicker;
     private Connection connection;
     public Client client;
     public Contract contract;
@@ -134,7 +136,7 @@ public class ClientGuiController implements Initializable{
            }else{
 
                giveClientInfo();
-               String query = "INSERT INTO Person (SSN,fName,mInit,lName,housePhoneNum,cellPhoneNum,address,sex,type) VALUES (?,?,?,?,?,?,?,?,?)";
+               String query = "INSERT INTO Person (SSN,fName,mInit,lName,housePhoneNum,cellPhoneNum,address,sex,type,dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?,?)";
                ps = connection.prepareStatement(query);
                ps.setInt(1, client.getSSN());
                ps.setString(2, client.getFirstName());
@@ -144,9 +146,8 @@ public class ClientGuiController implements Initializable{
                ps.setString(6, client.getCellPhoneNum());
                ps.setString(7, client.getAddress());
                ps.setString(8, client.getSex());
-
-
                ps.setString(9, "client");
+               ps.setString(10,client.getDateOfBirth().toString());
 
 
                ps.executeUpdate();
@@ -169,7 +170,7 @@ public class ClientGuiController implements Initializable{
         @FXML public void updateClient(ActionEvent actionEvent){
             giveClientInfo();
             try {
-                String query = "UPDATE Person set fName=?, mInit=?, lName=?,housePhoneNum=?,cellPhoneNum=?,address=?,sex=? WHERE SSN ='" + client.getSSN() + "'";
+                String query = "UPDATE Person set fName=?, mInit=?, lName=?,housePhoneNum=?,cellPhoneNum=?,address=?,sex=?,dateOfBirth=? WHERE SSN ='" + client.getSSN() + "'";
                 PreparedStatement ps = connection.prepareStatement(query);
                 ps.setString(1, client.getFirstName());
                 ps.setString(2, client.getMiddleInit());
@@ -178,7 +179,7 @@ public class ClientGuiController implements Initializable{
                 ps.setString(5, client.getCellPhoneNum());
                 ps.setString(6, client.getAddress());
                 ps.setString(7, client.getSex());
-
+                ps.setString(8,client.getDateOfBirth().toString());
                 ps.execute();
 
                 if(!insCompanyName.getText().equals("") && !insPolicyNumber.getText().equals("") ) {
@@ -258,6 +259,7 @@ public class ClientGuiController implements Initializable{
                        client.setAddress(rs.getString("address"));
                        client.setHousePhoneNum(rs.getString("housePhoneNum"));
                        client.setCellPhoneNum(rs.getString("cellPhoneNum"));
+                       client.setDateOfBirth(rs.getDate("dateOfBirth"));
 
                        message.setTextFill(Color.BLACK);
                        message.setText("Record Retrieved!");
@@ -302,6 +304,7 @@ public class ClientGuiController implements Initializable{
       counselorNameLbl.setText(counselor.getFirstName() + " " + counselor.getMiddleInit() + " " + counselor.getLastName());
       contractStartLbl.setText(String.valueOf(contract.getDateStarted()));
       contractEndLbl.setText(String.valueOf(contract.getDateTerminated()));
+      dateOfBirthPicker.setValue(LocalDate.parse(client.getDateOfBirth().toString()));
 
         if(client.getSex().equals("F")) {
           clientSex.setValue("Female");
@@ -317,7 +320,8 @@ public class ClientGuiController implements Initializable{
         if (queryResults.getText().isEmpty()) {
             queryResults.appendText("Name: " + client.getFirstName() + " " + client.getMiddleInit() + " " + client.getLastName() + "\n");
             queryResults.appendText("House Phone #: " + client.getHousePhoneNum() + "\n" + "Cell Phone #: " + client.getCellPhoneNum() + "\n");
-            queryResults.appendText("Address: " + client.getAddress());
+            queryResults.appendText("Address: " + client.getAddress() + "\n");
+            queryResults.appendText("Date of Birth: " + client.getDateOfBirth());
             queryResults.appendText("\n \n");
             queryResults.appendText("Ins. Policy Name: " + client.getInsName() + "\nPolicy Number: " + client.getInsPolicyNum());
         } else {
@@ -335,7 +339,7 @@ public class ClientGuiController implements Initializable{
         client.setAddress(clientAddress.getText());
         client.setHousePhoneNum(clientHousePhone.getText());
         client.setCellPhoneNum(clientCellPhone.getText());
-
+        client.setDateOfBirth(Date.valueOf(dateOfBirthPicker.getValue()));
         if(clientSex.getSelectionModel().getSelectedItem().toString() == "Female")
         client.setSex("F");
         else if(clientSex.getSelectionModel().getSelectedItem().toString() == "Male"){
@@ -384,7 +388,7 @@ public class ClientGuiController implements Initializable{
 
     @FXML public void updateAssignmentInfo(){
         try{
-            String query = "SELECT ca.dateStarted,ca.counID,p.fName,p.mInit,p.lName,ct.dateTerminated FROM contract_assignment ca,counselor c,contract ct, Person p WHERE ca.contractID = ct.contractID AND ca.counID = c.c_id AND c.SSN = p.SSN AND p.type = 'counselor' AND ca.clientSSN = ? ";
+            String query = "SELECT ct.dateStarted,ct.counID,p.fName,p.mInit,p.lName,ct.dateTerminated FROM counselor c,contract ct, Person p WHERE  ct.counID = c.c_id AND c.SSN = p.SSN AND p.type = 'counselor' AND ct.clientSSN = ? ";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(client.getSSN()));
 
@@ -496,7 +500,7 @@ public void clearData(){
         queryResults.setText("");
         clientHistoryTable.getItems().clear();
         scheduleTable.getItems().clear();
-
+        dateOfBirthPicker.setValue(null);
         message.setTextFill(Color.BLACK);
 
         message.setText("The data has been cleared!");

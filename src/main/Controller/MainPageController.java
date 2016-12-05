@@ -81,44 +81,44 @@ public class MainPageController {
             System.out.println(e.getMessage());
         }
     }
-    
     @FXML
-        public void statsActivation(ActionEvent actionEvent) throws IOException {
-            Parent root;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/main/View/statsView.fxml"));
-                if (root != null) {
-                    Stage stage = new Stage();
-                    stage.setTitle("Client Stats");
-                    stage.setScene(new Scene(root, 600, 400));
+    public void statsActivation(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/main/View/statsView.fxml"));
+            if (root != null) {
+                Stage stage = new Stage();
+                stage.setTitle("Client Stats");
+                stage.setScene(new Scene(root, 600, 400));
 
-                    stage.show();
-                    // Hide this current window (if this is what you want)
-                    //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-                }
-            }
-            catch (IOException e) {
-                System.out.println(e.getMessage());
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
             }
         }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-        @FXML
-        public void faqActivation(ActionEvent actionEvent) throws IOException {
-            Parent root;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/main/View/faqView.fxml"));
-                if (root != null) {
-                    Stage stage = new Stage();
-                    stage.setTitle("Frequently Accessed Queries");
-                    stage.setScene(new Scene(root, 600, 400));
+    @FXML
+    public void faqActivation(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/main/View/faqView.fxml"));
+            if (root != null) {
+                Stage stage = new Stage();
+                stage.setTitle("Frequently Accessed Queries");
+                stage.setScene(new Scene(root, 600, 400));
 
-                    stage.show();
-                    // Hide this current window (if this is what you want)
-                    //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-                }
-            }
-            catch (IOException e) {
-                System.out.println(e.getMessage());
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
             }
         }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

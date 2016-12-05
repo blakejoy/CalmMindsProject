@@ -15,8 +15,11 @@ import main.Resources.DBConnect;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 public class CounselorGuiController implements Initializable{
 
@@ -36,7 +39,7 @@ public class CounselorGuiController implements Initializable{
     public Client client;
     public Contract contract;
     public Counselor counselor;
-
+    @FXML private DatePicker dateOfBirthPicker;
     @FXML private Label counselorIDLbl;
     @FXML private Label clientNameLbl;
     @FXML private Label contractStartLbl;
@@ -49,7 +52,7 @@ public class CounselorGuiController implements Initializable{
     @FXML private Button updateBtn;
     @FXML private Button addBtn;
    @FXML private Label hireDateLbl;
-
+       private LocalDate today;
 
 
     @FXML private TableColumn<Contract,Date> dateStartedCol;
@@ -66,8 +69,9 @@ public class CounselorGuiController implements Initializable{
 
     @FXML private TableView<Contract> contractTable;
     @FXML private TableView<Schedule> scheduleTable;
-    private ObservableList<ClientHistory> contractData;
+    private ObservableList<Contract> contractData;
     private ObservableList<Schedule> scheddata;
+    ArrayList<String> degrees = new ArrayList<String>();
 
 
     /**
@@ -87,11 +91,10 @@ public class CounselorGuiController implements Initializable{
 
      );
      counselorSex.getSelectionModel().selectFirst();
-
-        dateStartedCol.setCellValueFactory(new PropertyValueFactory<>("dateDiagnosed"));
-        dateTerminatedCol.setCellValueFactory(new PropertyValueFactory<>("details"));
-        clientNameCol.setCellValueFactory(new PropertyValueFactory<>("previousTreatment"));
-        contractIDCol.setCellValueFactory(new PropertyValueFactory<>("treatmentType"));
+        contractIDCol.setCellValueFactory(new PropertyValueFactory<>("contractID"));
+        clientNameCol.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+        dateStartedCol.setCellValueFactory(new PropertyValueFactory<>("dateStarted"));
+        dateTerminatedCol.setCellValueFactory(new PropertyValueFactory<>("dateTerminated"));
 
 
         availabilityCol.setCellValueFactory(new PropertyValueFactory<>("Availability"));
@@ -100,6 +103,8 @@ public class CounselorGuiController implements Initializable{
         sessionTypeCol.setCellValueFactory(new PropertyValueFactory<>("Session Type"));
         therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("Therapy Type"));
         violationCol.setCellValueFactory(new PropertyValueFactory<>("Violation"));
+
+        today = LocalDate.now();
 
     }
 
@@ -123,7 +128,7 @@ public class CounselorGuiController implements Initializable{
            }else{
 
                giveCounselorInfo();
-               String query = "INSERT INTO Person (SSN,fName,mInit,lName,housePhoneNum,cellPhoneNum,address,sex,type) VALUES (?,?,?,?,?,?,?,?,?)";
+               String query = "INSERT INTO Person (SSN,fName,mInit,lName,housePhoneNum,cellPhoneNum,address,sex,type,dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?,?)";
                ps = connection.prepareStatement(query);
                ps.setInt(1, counselor.getSSN());
                ps.setString(2, counselor.getFirstName());
@@ -133,9 +138,9 @@ public class CounselorGuiController implements Initializable{
                ps.setString(6, counselor.getCellPhoneNum());
                ps.setString(7, counselor.getAddress());
                ps.setString(8, counselor.getSex());
-
-
                ps.setString(9, "counselor");
+               ps.setString(10, counselor.getDateOfBirth().toString());
+
 
 
                ps.executeUpdate();
@@ -143,7 +148,7 @@ public class CounselorGuiController implements Initializable{
                query = "INSERT INTO counselor (SSN,hireDate,yearsOfExp,availability) VALUES (?,?,?,?)";
                ps = connection.prepareStatement(query);
                ps.setInt(1, counselor.getSSN());
-               ps.setDate(2, counselor.getHireDate());
+               ps.setDate(2,java.sql.Date.valueOf(today) );
                ps.setInt(3, 0);
                ps.setString(4, counselor.getAvailability());
 
@@ -166,7 +171,7 @@ public class CounselorGuiController implements Initializable{
         @FXML public void updateCounselor(ActionEvent actionEvent){
             giveCounselorInfo();
             try {
-                String query = "UPDATE Person set fName=?, mInit=?, lName=?,housePhoneNum=?,cellPhoneNum=?,address=?,sex=? WHERE SSN ='" + counselor.getSSN() + "'";
+                String query = "UPDATE Person set fName=?, mInit=?, lName=?,housePhoneNum=?,cellPhoneNum=?,address=?,sex=?,dateOfBirth=?, availability=? WHERE SSN ='" + counselor.getSSN() + "'";
                 PreparedStatement ps = connection.prepareStatement(query);
                 ps.setString(1, counselor.getFirstName());
                 ps.setString(2, counselor.getMiddleInit());
@@ -175,6 +180,10 @@ public class CounselorGuiController implements Initializable{
                 ps.setString(5, counselor.getCellPhoneNum());
                 ps.setString(6, counselor.getAddress());
                 ps.setString(7, counselor.getSex());
+                ps.setString(8, counselor.getDateOfBirth().toString());
+                ps.setString(8, counselor.getAvailability());
+
+
 
                 ps.execute();
 
@@ -224,14 +233,14 @@ public class CounselorGuiController implements Initializable{
 
 
    @FXML public void searchBySSNorID(ActionEvent actionEvent) {
-
             counselor.setSSN(Integer.parseInt(counselorSSN.getText()));
        if (!counselorSSN.equals("")) {
 
            try {
-               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? ";
+               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? OR c.c_ID = ? ";
                PreparedStatement ps = connection.prepareStatement(query);
                ps.setString(1, String.valueOf(counselor.getSSN()));
+               ps.setString(2, String.valueOf(counselor.getCounselorID()));
 
 
                ResultSet rs = ps.executeQuery();
@@ -247,14 +256,28 @@ public class CounselorGuiController implements Initializable{
                        counselor.setHousePhoneNum(rs.getString("housePhoneNum"));
                        counselor.setCellPhoneNum(rs.getString("cellPhoneNum"));
                        counselor.setAvailability(rs.getString("availability"));
+                       counselor.setDateOfBirth(rs.getDate("dateOfBirth"));
                        counselor.setCounselorID(rs.getInt("c_id"));
                        counselor.setHireDate(rs.getDate("hireDate"));
-
-                       message.setTextFill(Color.BLACK);
-                       message.setText("Record Retrieved!");
                    }while (rs.next());
 
+
+                   query = "SELECT * FROM degree d WHERE counselID = ?";
+                   ps = connection.prepareStatement(query);
+                   ps.setString(1,String.valueOf(counselor.getCounselorID()));
+                   rs = ps.executeQuery();
+
+                   if(rs.next()) {
+                       do {
+                           counselor.setDegreeLevel(rs.getString("educationLevel"));
+                           counselor.setDegreeType(rs.getString("type"));
+                           degrees.add(counselor.getDegreeLevel() + " " + counselor.getDegreeType());
+                       } while (rs.next());
+                   }
+                   message.setTextFill(Color.BLACK);
+                   message.setText("Record Retrieved!");
                    updateContractInfo();
+                   populateContracts();
                    updateFields(actionEvent);
                    ps.close();
                }else{
@@ -287,16 +310,24 @@ public class CounselorGuiController implements Initializable{
       counselorAddress.setText(counselor.getAddress());
       counselorIDLbl.setText(String.valueOf(counselor.getCounselorID()));
       clientNameLbl.setText(client.getFirstName() + " " + client.getMiddleInit() + " " + client.getLastName());
-      contractStartLbl.setText(contract.getDateStarted().toString());
-      contractEndLbl.setText(contract.getDateTerminated().toString());
+        if(counselor.getSex().equals("F")) {
+            counselorSex.setValue("Female");
+        }else{
+            counselorSex.setValue("Male");
+        }
       availabilityTxtField.setText(counselor.getAvailability());
       hireDateLbl.setText(counselor.getHireDate().toString());
+      dateOfBirthPicker.setValue(counselor.getDateOfBirth().toLocalDate());
+        for(String i : degrees) {
+         degreeLbl.setText(i);
+        }
 
-        if(counselor.getSex().equals("F")) {
-          counselorSex.setValue("Female");
-      }else{
-          counselorSex.setValue("Male");
-      }
+        contractStartLbl.setText(contract.getDateStarted().toString());
+        contractEndLbl.setText(contract.getDateTerminated().toString());
+
+
+
+
 
       populateTextBox();
     }
@@ -306,10 +337,14 @@ public class CounselorGuiController implements Initializable{
         if (queryResults.getText().isEmpty()) {
             queryResults.appendText("Name: " + counselor.getFirstName() + " " + counselor.getMiddleInit() + " " + counselor.getLastName() + "\n");
             queryResults.appendText("House Phone #: " + counselor.getHousePhoneNum() + "\n" + "Cell Phone #: " + counselor.getCellPhoneNum() + "\n");
-            queryResults.appendText("Address: " + counselor.getAddress());
+            queryResults.appendText("Address: " + counselor.getAddress() + "\n");
+            queryResults.appendText("Date of Birth: " + counselor.getDateOfBirth() + "\n");
+            queryResults.appendText("Availability: " + counselor.getAvailability());
             queryResults.appendText("\n \n");
-            queryResults.appendText("Degree: " + counselor.getDegreeLevel() + "of" + counselor.getDegreeType());
-
+            queryResults.appendText("Degree: ");
+            for(String i : degrees) {
+                queryResults.appendText(i + ", ");
+            }
 
         } else {
             queryResults.setText("");
@@ -326,7 +361,7 @@ public class CounselorGuiController implements Initializable{
         counselor.setAddress(counselorAddress.getText());
         counselor.setHousePhoneNum(counselorHousePhone.getText());
         counselor.setCellPhoneNum(counselorCellPhone.getText());
-
+        counselor.setDateOfBirth(java.sql.Date.valueOf(dateOfBirthPicker.getValue()));
         if(counselorSex.getSelectionModel().getSelectedItem().toString() == "Female")
         counselor.setSex("F");
         else if(counselorSex.getSelectionModel().getSelectedItem().toString() == "Male"){
@@ -368,27 +403,27 @@ public class CounselorGuiController implements Initializable{
     }
 
 
-    /*@FXML public void populateClientHistory(){
-   historydata = FXCollections.observableArrayList();
+    @FXML public void populateContracts(){
+   contractData = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT * FROM client_history WHERE SSN = ? ";
+            String query = "SELECT c.*,CONCAT_WS(' ',p.fName,p.lName) AS fullName FROM contract c,Person p WHERE counID = ? AND c.clientSSN = p.SSN";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, String.valueOf(client.getSSN()));
+            ps.setString(1, String.valueOf(counselor.getCounselorID()));
 
 
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                history.setDateDiagnosed(rs.getDate("dateDiagnosed"));
-                history.setHistoryDetails(rs.getString("details"));
-                history.setPreviousTreatment(rs.getString("previousTreatment"));
-                history.setTreatmentType(rs.getString("treatmentType"));
-                historydata.add(history);
+                contract = new Contract();
+                contract.setContractID(rs.getInt("contractID"));
+                contract.setClientName(rs.getString("fullName"));
+                contract.setDateStarted(rs.getDate("dateStarted"));
+                contract.setDateTerminated(rs.getDate("dateTerminated"));
+                contractData.add(contract);
             }
 
-            clientHistoryTable.setItems(historydata);
-            clientHistoryTable.columnResizePolicyProperty();
+            contractTable.setItems(contractData);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -398,7 +433,7 @@ public class CounselorGuiController implements Initializable{
 
     }
 
-
+/*
     @FXML public void populateClientSchedule(){
 
         historydata = FXCollections.observableArrayList();
@@ -449,7 +484,12 @@ public class CounselorGuiController implements Initializable{
         contractEndLbl.setText("");
         counselorSex.getSelectionModel().selectFirst();
         queryResults.setText("");
-       // clientHistoryTable.getItems().clear();
+        dateOfBirthPicker.setValue(null);
+        availabilityTxtField.setText("");
+        hireDateLbl.setText("");
+        counselorIDLbl.setText("");
+        degreeLbl.setText("");
+        contractTable.getItems().clear();
         scheduleTable.getItems().clear();
 
         message.setTextFill(Color.BLACK);
