@@ -53,17 +53,23 @@ public class viewAllContractsController implements Initializable {
 
         contractData = FXCollections.observableArrayList();
 
+
+
         try{
-            String query = "SELECT c.contract_id,p.fName FROM contract c, Person p  WHERE p.type = 'client'";
+            String query = "SELECT ct.*,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName,CONCAT_WS(' ',cp.fName,cp.lName) AS fullCounName FROM contract ct,Person p,counselor ,Person cp WHERE ct.clientSSN = p.SSN AND ct.counID=counselor.c_id AND counselor.SSN = cp.SSN ";
             PreparedStatement ps = connection.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
-                contract = new Contract();
-
-                contractData.add(contract);
-            }
+                while(rs.next()){
+                    contract = new Contract();
+                    contract.setContractID(rs.getInt("contractID"));
+                    contract.setClientName(rs.getString("fullClientName"));
+                    contract.setCounselorName(rs.getString("fullCounName"));
+                    contract.setDateStarted(rs.getDate("dateStarted"));
+                    contract.setDateTerminated(rs.getDate("dateTerminated"));
+                    contractData.add(contract);
+                }
 
             allContractsTable.setItems(contractData);
 

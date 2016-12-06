@@ -53,7 +53,7 @@ public class MainPageController {
             if (root != null) {
                 Stage stage = new Stage();
                 stage.setTitle("All Clients");
-                stage.setScene(new Scene(root, 800, 600));
+                stage.setScene(new Scene(root, 900, 600));
                 stage.show();
                 // Hide this current window (if this is what you want)
                 //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
@@ -71,6 +71,25 @@ public class MainPageController {
             if (root != null) {
                 Stage stage = new Stage();
                 stage.setTitle("All Counselors");
+                stage.setScene(new Scene(root, 900, 600));
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+            }
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void allContractActivation(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../View/allContracts.fxml"));
+            if (root != null) {
+                Stage stage = new Stage();
+                stage.setTitle("All Contracts");
                 stage.setScene(new Scene(root, 800, 600));
                 stage.show();
                 // Hide this current window (if this is what you want)
@@ -82,15 +101,14 @@ public class MainPageController {
         }
     }
     @FXML
-    public void statsActivation(ActionEvent actionEvent) throws IOException {
+    public void allSessionsActivation(ActionEvent actionEvent) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/main/View/statsView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../View/allSessions.fxml"));
             if (root != null) {
                 Stage stage = new Stage();
-                stage.setTitle("Client Stats");
-                stage.setScene(new Scene(root, 600, 400));
-
+                stage.setTitle("All Sessions");
+                stage.setScene(new Scene(root, 800, 600));
                 stage.show();
                 // Hide this current window (if this is what you want)
                 //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
@@ -101,24 +119,7 @@ public class MainPageController {
         }
     }
 
-    @FXML
-    public void faqActivation(ActionEvent actionEvent) throws IOException {
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/main/View/faqView.fxml"));
-            if (root != null) {
-                Stage stage = new Stage();
-                stage.setTitle("Frequently Accessed Queries");
-                stage.setScene(new Scene(root, 600, 400));
 
-                stage.show();
-                // Hide this current window (if this is what you want)
-                //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-            }
-        }
-        catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+
 
 }

@@ -12,7 +12,7 @@
    <children>
       <TableView fx:id="allContractsTable" prefHeight="410.0" prefWidth="669.0">
         <columns>
-          <TableColumn fx:id="contractIdCol" prefWidth="75.0" text="Contract ID" />
+          <TableColumn fx:id="contractIDCol" prefWidth="75.0" text="Contract ID" />
             <TableColumn fx:id="counselorNameCol" prefWidth="104.0" text="Counselor Name" />
             <TableColumn fx:id="clientNameCol" prefWidth="75.0" text="Client Name" />
             <TableColumn fx:id="dateStartedCol" prefWidth="87.0" text="Date Started" />

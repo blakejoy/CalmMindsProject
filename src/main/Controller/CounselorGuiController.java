@@ -39,6 +39,7 @@ public class CounselorGuiController implements Initializable{
     public Client client;
     public Contract contract;
     public Counselor counselor;
+    public Schedule schedule;
     @FXML private DatePicker dateOfBirthPicker;
     @FXML private Label counselorIDLbl;
     @FXML private Label clientNameLbl;
@@ -61,7 +62,7 @@ public class CounselorGuiController implements Initializable{
     @FXML private TableColumn<Contract,String> contractIDCol;
 
     @FXML private TableColumn<Schedule,String> availabilityCol;
-    @FXML private TableColumn<Schedule,String> counselNameCol;
+    @FXML private TableColumn<Schedule,String> clientNameSessCol;
     @FXML private TableColumn<Schedule,String> sessionDateCol;
     @FXML private TableColumn<Schedule,String> sessionTypeCol;
     @FXML private TableColumn<Schedule,String> violationCol;
@@ -97,12 +98,12 @@ public class CounselorGuiController implements Initializable{
         dateTerminatedCol.setCellValueFactory(new PropertyValueFactory<>("dateTerminated"));
 
 
-        availabilityCol.setCellValueFactory(new PropertyValueFactory<>("Availability"));
-        counselNameCol.setCellValueFactory(new PropertyValueFactory<>("Counselor Name"));
-        sessionDateCol.setCellValueFactory(new PropertyValueFactory<>("Session Date"));
-        sessionTypeCol.setCellValueFactory(new PropertyValueFactory<>("Session Type"));
-        therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("Therapy Type"));
-        violationCol.setCellValueFactory(new PropertyValueFactory<>("Violation"));
+        availabilityCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        clientNameSessCol.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+        sessionDateCol.setCellValueFactory(new PropertyValueFactory<>("sessionDate"));
+        sessionTypeCol.setCellValueFactory(new PropertyValueFactory<>("sessionType"));
+        therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("therapyType"));
+        violationCol.setCellValueFactory(new PropertyValueFactory<>("violation"));
 
         today = LocalDate.now();
 
@@ -237,7 +238,7 @@ public class CounselorGuiController implements Initializable{
        if (!counselorSSN.equals("")) {
 
            try {
-               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? OR c.c_ID = ? ";
+               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? OR c.c_id = ? ";
                PreparedStatement ps = connection.prepareStatement(query);
                ps.setString(1, String.valueOf(counselor.getSSN()));
                ps.setString(2, String.valueOf(counselor.getCounselorID()));
@@ -278,6 +279,7 @@ public class CounselorGuiController implements Initializable{
                    message.setText("Record Retrieved!");
                    updateContractInfo();
                    populateContracts();
+                   populateCounselorSchedule();
                    updateFields(actionEvent);
                    ps.close();
                }else{
@@ -376,7 +378,7 @@ public class CounselorGuiController implements Initializable{
 // Find query for most recent
     @FXML public void updateContractInfo(){
         try{
-            String query = "SELECT ct.contractID,p.fName,p.mInit,p.lName,ct.dateTerminated, MAX(ct.dateStarted) AS dateStarted FROM bjoyne2db.counselor c,bjoyne2db.contract ct, bjoyne2db.Person p WHERE  ct.counID = c.c_id AND ct.clientSSN = p.SSN AND ct.counID = ?  ";
+            String query = "SELECT ct.contractID,p.fName,p.mInit,p.lName,ct.dateTerminated, MAX(ct.dateStarted) AS dateStarted FROM bjoyne2db.counselor c,bjoyne2db.contract ct, bjoyne2db.Person p WHERE  ct.counID = c.c_id AND ct.clientSSN = p.SSN AND ct.counID = ? ORDER BY dateStarted DESC  ";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(counselor.getCounselorID()));
 
@@ -433,39 +435,38 @@ public class CounselorGuiController implements Initializable{
 
     }
 
-/*
-    @FXML public void populateClientSchedule(){
 
-        historydata = FXCollections.observableArrayList();
+    @FXML public void populateCounselorSchedule(){
+
+       scheddata = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT * FROM client_history WHERE SSN = ? ";
+            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,violation,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName FROM schedule,Person p,sessions WHERE session_id = s_id AND sessions.clientSSN = p.SSN AND sessions.leadCounID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, String.valueOf(client.getSSN()));
+            ps.setString(1, String.valueOf(counselor.getCounselorID()));
 
 
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                history.setDateDiagnosed(rs.getDate("dateDiagnosed"));
-                history.setHistoryDetails(rs.getString("details"));
-                history.setPreviousTreatment(rs.getString("previousTreatment"));
-                history.setTreatmentType(rs.getString("treatmentType"));
-                historydata.add(history);
+                schedule = new Schedule();
+                schedule.setSessionDate(rs.getDate("s_date"));
+                schedule.setClientName(rs.getString("fullClientName"));
+                schedule.setAvailability(rs.getString("availability"));
+                schedule.setSessionType(rs.getString("sessionType"));
+                schedule.setTherapyType(rs.getString("therapyType"));
+                schedule.setViolation(rs.getString("violation"));
+                scheddata.add(schedule);
             }
 
-            clientHistoryTable.setItems(historydata);
-            clientHistoryTable.columnResizePolicyProperty();
+            scheduleTable.setItems(scheddata);
         }
         catch(Exception e){
             e.printStackTrace();
             System.out.println("Error on history Data");
         }
 
-
-
-
-    }*/
+    }
 
 
 
@@ -491,7 +492,7 @@ public class CounselorGuiController implements Initializable{
         degreeLbl.setText("");
         contractTable.getItems().clear();
         scheduleTable.getItems().clear();
-
+        degrees.clear();
         message.setTextFill(Color.BLACK);
 
         message.setText("The data has been cleared!");

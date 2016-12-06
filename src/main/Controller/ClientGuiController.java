@@ -27,11 +27,13 @@ import main.Model.*;
 import main.Resources.DBConnect;
 
 import java.awt.*;
+import java.io.IOException;
 import java.sql.*;
 
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -54,11 +56,16 @@ public class ClientGuiController implements Initializable{
     @FXML private Label message;
 
     @FXML private DatePicker dateOfBirthPicker;
+
+
+
+
     private Connection connection;
     public Client client;
     public Contract contract;
     public Counselor counselor;
     public ClientHistory history;
+    public Schedule schedule;
 
     @FXML private Label counselorIDLbl;
     @FXML private Label counselorNameLbl;
@@ -107,12 +114,12 @@ public class ClientGuiController implements Initializable{
         treatmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("treatmentType"));
 
 
-        availabilityCol.setCellValueFactory(new PropertyValueFactory<>("Availability"));
-        counselNameCol.setCellValueFactory(new PropertyValueFactory<>("Counselor Name"));
-        sessionDateCol.setCellValueFactory(new PropertyValueFactory<>("Session Date"));
-        sessionTypeCol.setCellValueFactory(new PropertyValueFactory<>("Session Type"));
-        therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("Therapy Type"));
-        violationCol.setCellValueFactory(new PropertyValueFactory<>("Violation"));
+        availabilityCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        counselNameCol.setCellValueFactory(new PropertyValueFactory<>("leadCounselorName"));
+        sessionDateCol.setCellValueFactory(new PropertyValueFactory<>("sessionDate"));
+        sessionTypeCol.setCellValueFactory(new PropertyValueFactory<>("sessionType"));
+        therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("therapyType"));
+        violationCol.setCellValueFactory(new PropertyValueFactory<>("violation"));
 
     }
 
@@ -120,7 +127,7 @@ public class ClientGuiController implements Initializable{
 
 
 //Adds new client to database
-    @FXML public void addClient(ActionEvent actionEvent){
+    @FXML public void addClient(ActionEvent event) throws IOException{
         try {
 
             String queryCheck = "SELECT * FROM Person WHERE type = 'client' AND SSN = ? ";
@@ -157,6 +164,7 @@ public class ClientGuiController implements Initializable{
                populateTextBox();
                message.setText("Record added successfully!");
                ps.close();
+              // counselorAssignmentAlert(event);
            }
 
 
@@ -268,6 +276,7 @@ public class ClientGuiController implements Initializable{
                    populateInsurance();
                    updateAssignmentInfo();
                    populateClientHistory();
+                   populateClientSchedule();
                    updateFields(actionEvent);
                    ps.close();
                }else{
@@ -444,13 +453,15 @@ public class ClientGuiController implements Initializable{
 
     }
 
-
+/*
+Need to come up with a cleaner query for this method. Right now it pulls a bunch of stuff that isn't needed
+ */
     @FXML public void populateClientSchedule(){
 
-        historydata = FXCollections.observableArrayList();
+        scheddata = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT * FROM client_history WHERE SSN = ? ";
+            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,violation,CONCAT_WS(' ',p.fName,p.lName) AS fullCounName FROM schedule,Person p,sessions,counselor WHERE session_id = s_id AND counselor.c_id = sessions.leadCounID AND counselor.SSN = p.SSN AND sessions.clientSSN = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(client.getSSN()));
 
@@ -458,15 +469,17 @@ public class ClientGuiController implements Initializable{
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                history.setDateDiagnosed(rs.getDate("dateDiagnosed"));
-                history.setHistoryDetails(rs.getString("details"));
-                history.setPreviousTreatment(rs.getString("previousTreatment"));
-                history.setTreatmentType(rs.getString("treatmentType"));
-                historydata.add(history);
+                schedule = new Schedule();
+                schedule.setSessionDate(rs.getDate("s_date"));
+                schedule.setLeadCounselorName(rs.getString("fullCounName"));
+                schedule.setAvailability(rs.getString("availability"));
+                schedule.setSessionType(rs.getString("sessionType"));
+                schedule.setTherapyType(rs.getString("therapyType"));
+                schedule.setViolation(rs.getString("violation"));
+                scheddata.add(schedule);
             }
 
-            clientHistoryTable.setItems(historydata);
-            clientHistoryTable.columnResizePolicyProperty();
+            scheduleTable.setItems(scheddata);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -479,6 +492,58 @@ public class ClientGuiController implements Initializable{
     }
 
 
+
+    //NEED to work on this. This is suppose to be able to assign a counselor to a newly added client.
+public void counselorAssignmentAlert(ActionEvent event) throws IOException{
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to assign a counselor to " +client.getFirstName() + " " + client.getLastName() + " now?",ButtonType.YES,ButtonType.NO);
+    alert.setTitle("Counselor Assignment");
+    alert.setHeaderText("Assign Counselor");
+    Optional<ButtonType> result = alert.showAndWait();
+
+    if (result.get() == ButtonType.YES){
+
+            try {
+               Parent root = FXMLLoader.load(getClass().getResource("../View/assignCounselor.fxml"));
+                if (root != null) {
+                    Stage stage = new Stage();
+
+                    stage.setTitle("Counselor Window");
+                    stage.setScene(new Scene(root, 1027, 592));
+                    stage.show();
+                    // Hide this current window (if this is what you want)
+                    //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                }
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+
+    }else{
+
+       alert.close();
+    }
+
+
+
+    }
+
+
+public int getClientSSN(int clientSSN){
+      return clientSSN;
+}
+
+
+
+public void refreshData(ActionEvent actionEvent){
+    updateClient(actionEvent);
+    populateInsurance();
+    updateAssignmentInfo();
+    populateClientHistory();
+    populateClientSchedule();
+    updateFields(actionEvent);
+}
 
 public void clearData(){
 
