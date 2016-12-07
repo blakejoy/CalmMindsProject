@@ -41,6 +41,13 @@ public class viewAllSessionsController implements Initializable {
     @FXML
     TableView allSessionsTable;
 
+
+    /**
+     * Initializes a table for all of the Sessions stored in the DB.
+     *
+     * @param location ignored
+     * @param resources ignored
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

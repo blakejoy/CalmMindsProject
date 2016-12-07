@@ -24,7 +24,11 @@ public class LoginController{
     @FXML private Button loginBtn;
 
 
-
+    /**
+     *
+     * @param event returns object that the event returns
+     * @throws IOException
+     */
 
 
     @FXML private void login(ActionEvent event) throws IOException{

@@ -35,6 +35,7 @@ public class viewAllContractsController implements Initializable {
 
 
     /**
+     *Initializes table for all Contracts that are in DB
      *
      * @param location not used
      * @param resources not used

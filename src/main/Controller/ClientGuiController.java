@@ -57,9 +57,6 @@ public class ClientGuiController implements Initializable{
 
     @FXML private DatePicker dateOfBirthPicker;
 
-
-
-
     private Connection connection;
     public Client client;
     public Contract contract;
@@ -90,6 +87,7 @@ public class ClientGuiController implements Initializable{
 
 
     /**
+     *Intializes the connection, classes and table columns
      *
      * @param location ignored
      * @param resources ignored
@@ -124,10 +122,13 @@ public class ClientGuiController implements Initializable{
     }
 
 
+    /**
+     * Adds new client to database
+     *
+     * @param event ignored
+     */
 
-
-//Adds new client to database
-    @FXML public void addClient(ActionEvent event) throws IOException{
+    @FXML public void addClient(ActionEvent event){
         try {
 
             String queryCheck = "SELECT * FROM Person WHERE type = 'client' AND SSN = ? ";
@@ -174,7 +175,11 @@ public class ClientGuiController implements Initializable{
             }
         }
 
-
+    /**
+     * Updates the client if any text fields are changed
+     *
+     * @param actionEvent
+     */
         @FXML public void updateClient(ActionEvent actionEvent){
             giveClientInfo();
             try {
@@ -214,6 +219,11 @@ public class ClientGuiController implements Initializable{
 
         }
 
+    /**
+     * Removes client from database
+     *
+     * @param actionEvent
+     */
 
     public void removeClient(ActionEvent actionEvent) {
         // We will only allow them to remove a full record by ssn
@@ -243,6 +253,11 @@ public class ClientGuiController implements Initializable{
 
     }
 
+    /**
+     * Search for client by SSN
+     *
+     * @param actionEvent Update the fields after the search is complete
+     */
 
    @FXML public void searchBySSN(ActionEvent actionEvent) {
        String clientSSN = clientSsn.getText();
@@ -298,7 +313,11 @@ public class ClientGuiController implements Initializable{
        }
    }
 
-
+    /**
+     * Updates fields on the form
+     *
+     * @param actionEvent ignored
+     */
 
     @FXML public void updateFields(ActionEvent actionEvent){
       clientFirstName.setText(client.getFirstName());
@@ -324,6 +343,11 @@ public class ClientGuiController implements Initializable{
       populateTextBox();
     }
 
+
+    /**
+     * Populates the textbox
+     */
+
     @FXML public void populateTextBox() {
 
         if (queryResults.getText().isEmpty()) {
@@ -339,6 +363,10 @@ public class ClientGuiController implements Initializable{
         }
     }
 
+
+    /**
+     * If a new client is being established, it stores all the info into an instance of the Client class
+     */
 
     public void giveClientInfo(){
         client.setSSN(Integer.parseInt(clientSsn.getText()));
@@ -359,6 +387,10 @@ public class ClientGuiController implements Initializable{
         client.setInsName(insCompanyName.getText());
         client.setInsPolicyNum(Integer.parseInt(insPolicyNumber.getText()));
     }
+
+    /**
+     * Sets the insurance information fields based on the Client SSN
+     */
 
     @FXML public void populateInsurance(){
         try{
@@ -393,6 +425,9 @@ public class ClientGuiController implements Initializable{
 
     }
 
+    /**
+     * Sets the Assignment information for a client based on the contract and counselor information
+     */
 
 
     @FXML public void updateAssignmentInfo(){
@@ -422,6 +457,10 @@ public class ClientGuiController implements Initializable{
 
     }
 
+
+    /**
+     * Populates the client history table view
+     */
 
     @FXML public void populateClientHistory(){
    historydata = FXCollections.observableArrayList();
@@ -453,8 +492,10 @@ public class ClientGuiController implements Initializable{
 
     }
 
-/*
-Need to come up with a cleaner query for this method. Right now it pulls a bunch of stuff that isn't needed
+/**
+ * populates the client schedule table view
+ *
+ *Need to come up with a cleaner query for this method. Right now it pulls a bunch of stuff that isn't needed
  */
     @FXML public void populateClientSchedule(){
 
@@ -492,6 +533,12 @@ Need to come up with a cleaner query for this method. Right now it pulls a bunch
     }
 
 
+    /**
+     * Ideally supposed to assign a newly inserted client to a contract. Needs some work though.
+     *
+     * @param event ignored
+     * @throws IOException
+     */
 
     //NEED to work on this. This is suppose to be able to assign a counselor to a newly added client.
 public void counselorAssignmentAlert(ActionEvent event) throws IOException{
@@ -529,14 +576,19 @@ public void counselorAssignmentAlert(ActionEvent event) throws IOException{
 
     }
 
-
+/*
 public int getClientSSN(int clientSSN){
       return clientSSN;
 }
+*/
 
 
-
-public void refreshData(ActionEvent actionEvent){
+    /**
+     * Refreshes data in the form
+     *
+     * @param actionEvent Updates the fields after all the data has been refreshed from the DB
+     */
+    public void refreshData(ActionEvent actionEvent){
     updateClient(actionEvent);
     populateInsurance();
     updateAssignmentInfo();
@@ -544,6 +596,10 @@ public void refreshData(ActionEvent actionEvent){
     populateClientSchedule();
     updateFields(actionEvent);
 }
+
+    /**
+     * Clears all data on the form
+     */
 
 public void clearData(){
 

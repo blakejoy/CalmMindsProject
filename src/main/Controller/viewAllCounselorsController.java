@@ -46,6 +46,7 @@ public class viewAllCounselorsController implements Initializable {
 
 
     /**
+     *Initializes a table for all the Counselors that are stored in the DB
      *
      * @param location not used
      * @param resources not used

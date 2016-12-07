@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 /**
  * Created by blakejoynes on 12/5/16.
  */
+
+
+
 public class assignmentController implements Initializable {
 
 
@@ -38,6 +41,13 @@ public class assignmentController implements Initializable {
     public Counselor counselor;
     ClientGuiController clientController;
 
+
+    /**
+     * Initializes the assignment information for a client based on the Client's SSN. Still needs work.
+     *
+     * @param location ignored
+     * @param resources ignored
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connection = DBConnect.getConnection();
@@ -47,7 +57,7 @@ public class assignmentController implements Initializable {
        FXMLLoader loader = new FXMLLoader();
        Parent root = loader.load(getClass().getResource("../View/clientConfig.fxml"));
        clientController = loader.getController();
-       clientController.getClientSSN(clientSSN);
+       //clientController.getClientSSN(clientSSN);
 
    }catch (IOException e){
 

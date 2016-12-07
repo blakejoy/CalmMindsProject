@@ -40,6 +40,7 @@ public class viewAllClientController implements Initializable {
 
 
     /**
+     *Initializes the table that lists all of the clients in the DB
      *
      * @param location not used
      * @param resources not used

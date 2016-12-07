@@ -110,9 +110,11 @@ public class CounselorGuiController implements Initializable{
     }
 
 
-
-
-//Adds new client to database
+    /**
+     * Adds a new Counselor to the DB
+     *
+     * @param actionEvent ignored
+     */
     @FXML public void addCounselor(ActionEvent actionEvent){
         try {
 
@@ -168,7 +170,7 @@ public class CounselorGuiController implements Initializable{
 
 
 
-
+//updates counselor information. If anything in the textfields or dropdowns are changed.
         @FXML public void updateCounselor(ActionEvent actionEvent){
             giveCounselorInfo();
             try {
@@ -204,6 +206,12 @@ public class CounselorGuiController implements Initializable{
         }
 
 
+    /**
+     * Deletes counselor,based on SSN, from database
+     *
+     * @param actionEvent ignored
+     */
+
     public void removeCounselor(ActionEvent actionEvent) {
         // We will only allow them to remove a full record by ssn
 
@@ -233,8 +241,19 @@ public class CounselorGuiController implements Initializable{
     }
 
 
+    /**
+     * Search by SSN or ID to populate the form
+     *
+     * @param actionEvent updates fields in the form
+     */
    @FXML public void searchBySSNorID(ActionEvent actionEvent) {
-            counselor.setSSN(Integer.parseInt(counselorSSN.getText()));
+if(counselorSSN.getText().length() < 9){
+    counselor.setCounselorID(Integer.parseInt(counselorSSN.getText()));
+
+}else{
+    counselor.setSSN(Integer.parseInt(counselorSSN.getText()));
+
+}
        if (!counselorSSN.equals("")) {
 
            try {
@@ -302,7 +321,11 @@ public class CounselorGuiController implements Initializable{
    }
 
 
-
+    /**
+     * Updates the fields on the form
+     *
+     * @param actionEvent ignored
+     */
     @FXML public void updateFields(ActionEvent actionEvent){
       counselorFirstName.setText(counselor.getFirstName());
       counselorMidInit.setText(counselor.getMiddleInit());
@@ -334,6 +357,12 @@ public class CounselorGuiController implements Initializable{
       populateTextBox();
     }
 
+
+    /**
+     * Populates the text box
+     *
+     */
+
     @FXML public void populateTextBox() {
 
         if (queryResults.getText().isEmpty()) {
@@ -354,6 +383,9 @@ public class CounselorGuiController implements Initializable{
         }
     }
 
+    /**
+     * If a new counselor is being established, it stores all the info into an instance of the Counselor class
+     */
 
     @FXML public void giveCounselorInfo(){
         counselor.setSSN(Integer.parseInt(counselorSSN.getText()));
@@ -375,7 +407,12 @@ public class CounselorGuiController implements Initializable{
     }
 
 
-// Find query for most recent
+    /**
+     * Updates to the most recent Contract that a counselor has.
+     *
+     * Find query for most recent
+     */
+
     @FXML public void updateContractInfo(){
         try{
             String query = "SELECT ct.contractID,p.fName,p.mInit,p.lName,ct.dateTerminated, MAX(ct.dateStarted) AS dateStarted FROM bjoyne2db.counselor c,bjoyne2db.contract ct, bjoyne2db.Person p WHERE  ct.counID = c.c_id AND ct.clientSSN = p.SSN AND ct.counID = ? ORDER BY dateStarted DESC  ";
@@ -404,6 +441,10 @@ public class CounselorGuiController implements Initializable{
 
     }
 
+    /**
+     * Populates a table for all the contracts that the counselor has
+     *
+     */
 
     @FXML public void populateContracts(){
    contractData = FXCollections.observableArrayList();
@@ -435,6 +476,11 @@ public class CounselorGuiController implements Initializable{
 
     }
 
+
+    /**
+     * Populates a table for all of the scheduled sessions a Counselor partakes in.
+     *
+     */
 
     @FXML public void populateCounselorSchedule(){
 
@@ -468,7 +514,9 @@ public class CounselorGuiController implements Initializable{
 
     }
 
-
+    /**
+     * Clears all data from the form.
+     */
 
 @FXML public void clearData(){
 
