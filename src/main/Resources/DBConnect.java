@@ -8,11 +8,16 @@ import com.mysql.jdbc.Driver;
 /**
  * Created by blakejoynes on 11/4/16.
  */
+
+
+/*
+This is what allows the application to connect to the MYSQL database
+ */
 public class DBConnect {
-    private static String url = "jdbc:mysql://localhost:3306/calmmindsdb?useSSL=false"; //jdbc:mysql://triton.towson.edu:3360/calmmindsdb
+    private static String url = "jdbc:mysql://triton.towson.edu:3360/bjoyne2db?useSSL=false"; //jdbc:mysql://triton.towson.edu:3360/calmmindsdb
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String username = "admin";
-    private static String password = "password";
+    private static String username = "bjoyne2";
+    private static String password = "Cosc*442a";
     private static Connection con;
 
     public static Connection getConnection() {

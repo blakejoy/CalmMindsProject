@@ -165,7 +165,7 @@ public class ClientGuiController implements Initializable{
                populateTextBox();
                message.setText("Record added successfully!");
                ps.close();
-              // counselorAssignmentAlert(event);
+               counselorAssignmentAlert();
            }
 
 
@@ -536,51 +536,55 @@ public class ClientGuiController implements Initializable{
     /**
      * Ideally supposed to assign a newly inserted client to a contract. Needs some work though.
      *
-     * @param event ignored
-     * @throws IOException
      */
 
-    //NEED to work on this. This is suppose to be able to assign a counselor to a newly added client.
-public void counselorAssignmentAlert(ActionEvent event) throws IOException{
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to assign a counselor to " +client.getFirstName() + " " + client.getLastName() + " now?",ButtonType.YES,ButtonType.NO);
-    alert.setTitle("Counselor Assignment");
-    alert.setHeaderText("Assign Counselor");
-    Optional<ButtonType> result = alert.showAndWait();
+public void counselorAssignmentAlert() {
 
-    if (result.get() == ButtonType.YES){
+    if (!clientSsn.getText().equals("") ) {
+
+        message.setTextFill(Color.BLACK);
+        message.setText("Changing client assignment....");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to assign a counselor to " + client.getFirstName() + " " + client.getLastName() + " now?", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Counselor Assignment");
+        alert.setHeaderText("Assign Counselor");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.YES) {
 
             try {
-               Parent root = FXMLLoader.load(getClass().getResource("../View/assignCounselor.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/View/assignCounselor.fxml"));
+                Parent root = (Parent) loader.load();
+                assignmentController controller = loader.<assignmentController>getController();
+                controller.setClientSSN(client.getSSN());
+
                 if (root != null) {
                     Stage stage = new Stage();
 
                     stage.setTitle("Counselor Window");
-                    stage.setScene(new Scene(root, 1027, 592));
+                    stage.setScene(new Scene(root, 402, 270));
                     stage.show();
                     // Hide this current window (if this is what you want)
                     //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
 
+        } else {
+            message.setTextFill(Color.RED);
+            message.setText("No client information provided!");
+
+        }
 
 
     }else{
 
-       alert.close();
-    }
-
-
 
     }
-
-/*
-public int getClientSSN(int clientSSN){
-      return clientSSN;
 }
-*/
+
+
 
 
     /**
