@@ -392,11 +392,17 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/View/statsView.fxml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/ClientGuiController.java" afterPath="$PROJECT_DIR$/src/main/Controller/ClientGuiController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java" afterPath="$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/Controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/MainPageController.java" afterPath="$PROJECT_DIR$/src/main/Controller/MainPageController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/assignmentController.java" afterPath="$PROJECT_DIR$/src/main/Controller/assignmentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Model/Counselor.java" afterPath="$PROJECT_DIR$/src/main/Model/Counselor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/viewAllClientController.java" afterPath="$PROJECT_DIR$/src/main/Controller/viewAllClientController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java" afterPath="$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/viewAllCounselorsController.java" afterPath="$PROJECT_DIR$/src/main/Controller/viewAllCounselorsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java" afterPath="$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Resources/DBConnect.java" afterPath="$PROJECT_DIR$/src/main/Resources/DBConnect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/View/assignCounselor.fxml" afterPath="$PROJECT_DIR$/src/main/View/assignCounselor.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/View/clientConfig.fxml" afterPath="$PROJECT_DIR$/src/main/View/clientConfig.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/View/allContracts.fxml" afterPath="$PROJECT_DIR$/src/main/View/allContracts.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/View/allSessions.fxml" afterPath="$PROJECT_DIR$/src/main/View/allSessions.fxml" />
     </list>
     <ignored path="CalmMindsProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -416,30 +422,49 @@
     <favorites_list name="CalmMindsProject" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ClientGuiController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/Controller/ClientGuiController.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Model/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="536" column="18" lean-forward="false" selection-start-line="536" selection-start-column="18" selection-end-line="536" selection-end-column="18" />
+            <state relative-caret-position="15">
+              <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewAllContractsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+              <folding>
+                <marker date="1481146812000" expanded="true" signature="1900:2139" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR...)" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewAllCounselorsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllCounselorsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="48" column="74" lean-forward="false" selection-start-line="48" selection-start-column="74" selection-end-line="48" selection-end-column="74" />
+              <folding>
+                <marker date="1481146829000" expanded="true" signature="2864:3028" ph=" SELECT statement (PERSON)" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewAllSessionsController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="45" column="68" lean-forward="false" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#20095#20117#0" expanded="true" />
-                <marker date="1481315116000" expanded="true" signature="4760:4814" ph=" SELECT statement (PERSON)" />
-                <marker date="1481315116000" expanded="true" signature="5186:5313" ph=" INSERT statement (PERSON)" />
-                <marker date="1481315116000" expanded="true" signature="6518:6659" ph=" UPDATE statement (PERSON)" />
-                <marker date="1481315116000" expanded="true" signature="7365:7450" ph=" UPDATE statement (CLIENT_INSURANCE)" />
-                <marker date="1481315116000" expanded="true" signature="8689:8721" ph=" DELETE statement (PERSON)" />
-                <marker date="1481315116000" expanded="true" signature="9413:9419" ph=" SELECT statement (ADMIN_USERS)" />
-                <marker date="1481315116000" expanded="true" signature="9413:9467" ph=" SELECT statement (PERSON)" />
-                <marker date="1481315116000" expanded="true" signature="14469:14513" ph=" SELECT statement (CLIENT_INSURANCE)" />
-                <marker date="1481315116000" expanded="true" signature="14761:14825" ph=" INSERT statement (CLIENT_INSURANCE)" />
-                <marker date="1481315116000" expanded="true" signature="15632:15711" ph=" SELECT statement (CONTRACT_ASSIGNMENT)" />
-                <marker date="1481315116000" expanded="true" signature="15632:15834" ph=" SELECT statement (CONTRACT_ASSIGNMENT, COUNSELOR)" />
-                <marker date="1481315116000" expanded="true" signature="16755:16797" ph=" SELECT statement (CLIENT_HISTORY)" />
-                <marker date="1481315116000" expanded="true" signature="17938:18060" ph=" SELECT statement (CLIENT_HISTORY)" />
-                <marker date="1481315116000" expanded="true" signature="17938:18212" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
-                <marker date="1481315116000" expanded="true" signature="17938:18214" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
+                <marker date="1481146870000" expanded="true" signature="2105:2363" ph=" SELECT statement (PERSON, SESSIONS, COUNSELOR...)" />
               </folding>
             </state>
           </provider>
@@ -501,9 +526,11 @@
         <option value="$PROJECT_DIR$/src/main/Model/Contract.java" />
         <option value="$PROJECT_DIR$/src/main/View/allCounselorConfig.fxml" />
         <option value="$PROJECT_DIR$/src/main/View/counserlorConfig.fxml" />
+        <option value="$PROJECT_DIR$/src/main/Model/Counselor.java" />
         <option value="$PROJECT_DIR$/src/main/View/counselorConfig.fxml" />
         <option value="$PROJECT_DIR$/src/main/View/allContracts.fxml" />
         <option value="$PROJECT_DIR$/src/main/Controller/StatsViewController.java" />
+        <option value="$PROJECT_DIR$/src/main/View/assignCounselor.fxml" />
         <option value="$PROJECT_DIR$/src/main/View/loginView.fxml" />
         <option value="$PROJECT_DIR$/src/main/Model/Session.java" />
         <option value="$PROJECT_DIR$/src/main/View/allSessions.fxml" />
@@ -511,17 +538,14 @@
         <option value="$PROJECT_DIR$/src/main/Model/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/Resources/DBConnect.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/MainPageController.java" />
+        <option value="$PROJECT_DIR$/src/main/Controller/ClientGuiController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java" />
+        <option value="$PROJECT_DIR$/src/main/Controller/assignmentController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/viewAllClientController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/viewAllCounselorsController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java" />
-        <option value="$PROJECT_DIR$/src/main/View/assignCounselor.fxml" />
-        <option value="$PROJECT_DIR$/src/main/Model/Counselor.java" />
-        <option value="$PROJECT_DIR$/src/main/Model/Specializations.java" />
-        <option value="$PROJECT_DIR$/src/main/Controller/ClientGuiController.java" />
-        <option value="$PROJECT_DIR$/src/main/Controller/assignmentController.java" />
       </list>
     </option>
   </component>
@@ -544,6 +568,25 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Production">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="CalmMindsProject">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -592,75 +635,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CalmMindsProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CalmMindsProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CalmMindsProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CalmMindsProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Production">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="CalmMindsProject">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1022,14 +1002,7 @@
       <option name="project" value="LOCAL" />
       <updated>1481050545525</updated>
     </task>
-    <task id="LOCAL-00008" summary="Added comments for the classes">
-      <created>1481146968466</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1481146968466</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1040,7 +1013,6 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1053,17 +1025,18 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3741403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3741403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1083,7 +1056,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3741403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3741403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1091,8 +1064,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30811554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30811554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1120,29 +1093,40 @@
     <MESSAGE value="Merged code. Also added some more functionality to the client and counselor modules. Added date of birth." />
     <MESSAGE value="Update the GUI with more functionality and added appropriate SQL statements to button actions." />
     <MESSAGE value="Everything is updated and appears to be working. The only thing that needs to be done is validation and the ability to add/edit contracts to clients." />
-    <MESSAGE value="Added comments for the classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comments for the classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Everything is updated and appears to be working. The only thing that needs to be done is validation and the ability to add/edit contracts to clients." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Controller/ClientGuiController.java</url>
-          <line>542</line>
+          <url>file://$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java</url>
+          <line>121</line>
           <properties />
-          <option name="timeStamp" value="64" />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Controller/assignmentController.java</url>
-          <line>82</line>
+          <line>57</line>
           <properties />
-          <option name="timeStamp" value="65" />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Controller/ClientGuiController.java</url>
+          <line>293</line>
+          <properties />
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="66" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1151,6 +1135,32 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/TableColumn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="386" column="0" lean-forward="false" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Resources/Utils.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/View/counselorConfig.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysql-connector-java-5.1.40/CHANGES">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1296,6 +1306,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="2443" column="0" lean-forward="false" selection-start-line="2443" selection-start-column="0" selection-end-line="2443" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/View/assignCounselor.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="104" lean-forward="false" selection-start-line="8" selection-start-column="104" selection-end-line="8" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Controller/StatsViewController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/Controller/FaqViewController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/View/statsView.fxml" />
@@ -1337,6 +1365,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Model/Counselor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,10 +1406,22 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+    <entry file="file://$PROJECT_DIR$/src/main/View/loginView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="31" column="111" lean-forward="false" selection-start-line="31" selection-start-column="111" selection-end-line="31" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1393,6 +1442,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1401,6 +1451,78 @@
         <state relative-caret-position="225">
           <caret line="141" column="26" lean-forward="false" selection-start-line="141" selection-start-column="15" selection-end-line="141" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1481145938000" expanded="true" signature="970:1047" ph=" SELECT statement (ADMIN_USERS)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/ClientGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="367" column="16" lean-forward="true" selection-start-line="367" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1481145792000" expanded="true" signature="4760:4814" ph=" SELECT statement (PERSON)" />
+            <marker date="1481145792000" expanded="true" signature="5186:5313" ph=" INSERT statement (PERSON)" />
+            <marker date="1481145792000" expanded="true" signature="6525:6666" ph=" UPDATE statement (PERSON)" />
+            <marker date="1481145792000" expanded="true" signature="7372:7457" ph=" UPDATE statement (CLIENT_INSURANCE)" />
+            <marker date="1481145792000" expanded="true" signature="8696:8728" ph=" DELETE statement (PERSON)" />
+            <marker date="1481145792000" expanded="true" signature="9420:9426" ph=" SELECT statement (ADMIN_USERS)" />
+            <marker date="1481145792000" expanded="true" signature="9420:9474" ph=" SELECT statement (PERSON)" />
+            <marker date="1481145792000" expanded="true" signature="14476:14520" ph=" SELECT statement (CLIENT_INSURANCE)" />
+            <marker date="1481145792000" expanded="true" signature="14768:14832" ph=" INSERT statement (CLIENT_INSURANCE)" />
+            <marker date="1481145792000" expanded="true" signature="15639:15718" ph=" SELECT statement (CONTRACT_ASSIGNMENT)" />
+            <marker date="1481145792000" expanded="true" signature="15639:15841" ph=" SELECT statement (CONTRACT_ASSIGNMENT, COUNSELOR)" />
+            <marker date="1481145792000" expanded="true" signature="16762:16804" ph=" SELECT statement (CLIENT_HISTORY)" />
+            <marker date="1481145792000" expanded="true" signature="17945:18067" ph=" SELECT statement (CLIENT_HISTORY)" />
+            <marker date="1481145792000" expanded="true" signature="17945:18219" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
+            <marker date="1481145792000" expanded="true" signature="17945:18221" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/assignmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="45" column="103" lean-forward="false" selection-start-line="45" selection-start-column="103" selection-end-line="45" selection-end-column="103" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1481146721000" expanded="true" signature="1987:2131" ph=" SELECT statement (PERSON, COUNSEL_SPECIALIZATION, COUNSELOR)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="517" column="37" lean-forward="false" selection-start-line="517" selection-start-column="37" selection-end-line="517" selection-end-column="37" />
+          <folding>
+            <marker date="1481146664000" expanded="true" signature="4407:4464" ph=" SELECT statement (PERSON)" />
+            <marker date="1481146664000" expanded="true" signature="4842:4969" ph=" INSERT statement (PERSON)" />
+            <marker date="1481146664000" expanded="true" signature="5662:5739" ph=" INSERT statement (COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="6481:6641" ph=" UPDATE statement (PERSON)" />
+            <marker date="1481146664000" expanded="true" signature="8249:8281" ph=" DELETE statement (PERSON)" />
+            <marker date="1481146664000" expanded="true" signature="9119:9246" ph=" SELECT statement (PERSON)" />
+            <marker date="1481146664000" expanded="true" signature="9119:9260" ph=" SELECT statement (PERSON, COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="10529:10571" ph=" SELECT statement (DEGREE)" />
+            <marker date="1481146664000" expanded="true" signature="15456:15477" ph=" SELECT statement" />
+            <marker date="1481146664000" expanded="true" signature="15456:15691" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR...)" />
+            <marker date="1481146664000" expanded="true" signature="15456:15692" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="15456:15701" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="15456:15718" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="15456:15719" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR)" />
+            <marker date="1481146664000" expanded="true" signature="16671:16790" ph=" SELECT statement (PERSON, CONTRACT)" />
+            <marker date="1481146664000" expanded="true" signature="17847:18080" ph=" SELECT statement (PERSON, COUNSELOR, SCHEDULE...)" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1414,13 +1536,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/Model/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="45" column="68" lean-forward="false" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+        <state relative-caret-position="15">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1481146870000" expanded="true" signature="2105:2363" ph=" SELECT statement (PERSON, SESSIONS, COUNSELOR...)" />
+            <marker date="1481146812000" expanded="true" signature="1900:2139" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR...)" />
           </folding>
         </state>
       </provider>
@@ -1435,162 +1564,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllContractsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/viewAllSessionsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Model/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/View/loginView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="31" column="111" lean-forward="false" selection-start-line="31" selection-start-column="111" selection-end-line="31" selection-end-column="111" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="34" />
+        <state relative-caret-position="675">
+          <caret line="45" column="68" lean-forward="false" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1481145938000" expanded="true" signature="970:1047" ph=" SELECT statement (ADMIN_USERS)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Model/ClientHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12509">
-          <caret line="2580" column="0" lean-forward="false" selection-start-line="2580" selection-start-column="0" selection-end-line="2580" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Model/Specializations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/TextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding>
-            <element signature="e#3264#3265#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/TextInputControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="347" column="35" lean-forward="false" selection-start-line="347" selection-start-column="35" selection-end-line="347" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Model/Counselor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="53" column="44" lean-forward="false" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1283#1284#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/View/assignCounselor.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="96" lean-forward="false" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/assignmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="87" column="53" lean-forward="false" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1481317281000" expanded="true" signature="1882:1957" ph=" SELECT statement (PERSON, COUNSEL_SPECIALIZATION, COUNSELOR)" />
-            <marker date="1481317281000" expanded="true" signature="2713:2724" ph=" INSERT statement" />
-            <marker date="1481317281000" expanded="true" signature="2713:2796" ph=" INSERT statement (CONTRACT)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/CounselorGuiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="517" column="37" lean-forward="false" selection-start-line="517" selection-start-column="37" selection-end-line="517" selection-end-column="37" />
-          <folding>
-            <marker date="1481146664000" expanded="true" signature="4407:4464" ph=" SELECT statement (PERSON)" />
-            <marker date="1481146664000" expanded="true" signature="4842:4969" ph=" INSERT statement (PERSON)" />
-            <marker date="1481146664000" expanded="true" signature="5662:5739" ph=" INSERT statement (COUNSELOR)" />
-            <marker date="1481146664000" expanded="true" signature="6481:6641" ph=" UPDATE statement (PERSON)" />
-            <marker date="1481146664000" expanded="true" signature="8249:8281" ph=" DELETE statement (PERSON)" />
-            <marker date="1481146664000" expanded="true" signature="9119:9260" ph=" SELECT statement (PERSON, COUNSELOR)" />
-            <marker date="1481146664000" expanded="true" signature="10529:10571" ph=" SELECT statement (DEGREE)" />
-            <marker date="1481146664000" expanded="true" signature="15456:15718" ph=" SELECT statement (PERSON, CONTRACT, COUNSELOR)" />
-            <marker date="1481146664000" expanded="true" signature="16671:16790" ph=" SELECT statement (PERSON, CONTRACT)" />
-            <marker date="1481146664000" expanded="true" signature="17847:18080" ph=" SELECT statement (PERSON, SESSIONS, SCHEDULE)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/ClientGuiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="536" column="18" lean-forward="false" selection-start-line="536" selection-start-column="18" selection-end-line="536" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20095#20117#0" expanded="true" />
-            <marker date="1481315116000" expanded="true" signature="4760:4814" ph=" SELECT statement (PERSON)" />
-            <marker date="1481315116000" expanded="true" signature="5186:5313" ph=" INSERT statement (PERSON)" />
-            <marker date="1481315116000" expanded="true" signature="6518:6659" ph=" UPDATE statement (PERSON)" />
-            <marker date="1481315116000" expanded="true" signature="7365:7450" ph=" UPDATE statement (CLIENT_INSURANCE)" />
-            <marker date="1481315116000" expanded="true" signature="8689:8721" ph=" DELETE statement (PERSON)" />
-            <marker date="1481315116000" expanded="true" signature="9413:9419" ph=" SELECT statement (ADMIN_USERS)" />
-            <marker date="1481315116000" expanded="true" signature="9413:9467" ph=" SELECT statement (PERSON)" />
-            <marker date="1481315116000" expanded="true" signature="14469:14513" ph=" SELECT statement (CLIENT_INSURANCE)" />
-            <marker date="1481315116000" expanded="true" signature="14761:14825" ph=" INSERT statement (CLIENT_INSURANCE)" />
-            <marker date="1481315116000" expanded="true" signature="15632:15711" ph=" SELECT statement (CONTRACT_ASSIGNMENT)" />
-            <marker date="1481315116000" expanded="true" signature="15632:15834" ph=" SELECT statement (CONTRACT_ASSIGNMENT, COUNSELOR)" />
-            <marker date="1481315116000" expanded="true" signature="16755:16797" ph=" SELECT statement (CLIENT_HISTORY)" />
-            <marker date="1481315116000" expanded="true" signature="17938:18060" ph=" SELECT statement (CLIENT_HISTORY)" />
-            <marker date="1481315116000" expanded="true" signature="17938:18212" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
-            <marker date="1481315116000" expanded="true" signature="17938:18214" ph=" SELECT statement (SESSIONS, SCHEDULE)" />
+            <marker date="1481146870000" expanded="true" signature="2105:2363" ph=" SELECT statement (PERSON, SESSIONS, COUNSELOR...)" />
           </folding>
         </state>
       </provider>

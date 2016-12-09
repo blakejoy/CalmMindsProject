@@ -1,7 +1,6 @@
 package main.Model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 /**
  * Created by blakejoynes on 11/16/16.
@@ -13,7 +12,7 @@ public class Counselor extends Person {
     private int yearsOfExp;
 private String degreeType;
 private String degreeLevel;
-private ArrayList<String> specializations;
+private String specialization;
 private String availability;
     public Counselor(){
 
@@ -45,13 +44,12 @@ private String availability;
     public void setDegreeLevel(String degreeLevel){
         this.degreeLevel = degreeLevel;
     }
-
-    public ArrayList<String> getSpecializations(){
-        return specializations;
+    public String getSpecialization(){
+        return specialization;
     }
 
-    public void setSpecializations(String specialization){
-        specializations.add(specialization);
+    public void setSpecialization(String specialization){
+        this.specialization = specialization;
     }
 
     public String getAvailability(){
