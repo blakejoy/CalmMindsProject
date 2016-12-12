@@ -90,6 +90,8 @@ public class ClientGuiController implements Initializable{
     private ObservableList<Schedule> scheddata;
     @FXML TabPane clientTabPane;
 @FXML Button addSessionBtn;
+    public sessionController sController;
+
     /**
      *Intializes the connection, classes and table columns
      *
@@ -104,7 +106,7 @@ public class ClientGuiController implements Initializable{
      contract = new Contract();
      counselor = new Counselor();
      history = new ClientHistory();
-
+sController = new sessionController();
 
 
         clientSex.setItems(FXCollections.observableArrayList("Select Sex", new Separator(), "Male", "Female")
@@ -125,7 +127,7 @@ public class ClientGuiController implements Initializable{
         therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("therapyType"));
         violationCol.setCellValueFactory(new PropertyValueFactory<>("violation"));
 
-       /*
+
         clientTabPane.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Tab>() {
                     @Override
@@ -137,7 +139,7 @@ public class ClientGuiController implements Initializable{
                         }
                     }
                 }
-        ); */
+        );
     }
 
 
@@ -658,7 +660,7 @@ public void clearData(){
 
 
 
-/*
+
 public void addNewSession(ActionEvent event){
     if (!clientSsn.getText().equals("") ) {
 
@@ -675,9 +677,9 @@ public void addNewSession(ActionEvent event){
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/View/addNewSession.fxml"));
                 Parent root = (Parent) loader.load();
-                sessionController controller = loader.<sessionController>getController();
-                controller.setClientSSN(client.getSSN());
-                controller.setCounselorID(counselorIDLbl.getText());
+                sController = loader.<sessionController>getController();
+                sController.setClientSSN(String.valueOf(client.getSSN()));
+                sController.setCounselorID(counselorIDLbl.getText());
                 if (root != null) {
                     Stage stage = new Stage();
 
@@ -704,7 +706,6 @@ public void addNewSession(ActionEvent event){
     }
 
 }
-*/
 
 
 }
