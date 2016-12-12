@@ -17,6 +17,7 @@
             <TableColumn fx:id="clientNameCol" prefWidth="75.0" text="Client Name" />
             <TableColumn fx:id="dateStartedCol" prefWidth="87.0" text="Date Started" />
             <TableColumn fx:id="dateTerminatedCol" prefWidth="74.0" text="Date Terminated" />
+            <TableColumn fx:id="courtOrderedCol" prefWidth="74.0" text="Court Ordered" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

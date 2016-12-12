@@ -149,7 +149,7 @@ public class MainPageController {
             if (root != null) {
                 Stage stage = new Stage();
                 stage.setTitle("All Sessions");
-                stage.setScene(new Scene(root, 800, 600));
+                stage.setScene(new Scene(root, 675, 475));
                 stage.show();
                 // Hide this current window (if this is what you want)
                 //((Node) (actionEvent.getSource())).getScene().getWindow().hide();

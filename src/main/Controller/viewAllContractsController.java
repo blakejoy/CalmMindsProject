@@ -28,6 +28,7 @@ public class viewAllContractsController implements Initializable {
     @FXML private TableColumn clientNameCol;
     @FXML private TableColumn dateStartedCol;
     @FXML private TableColumn dateTerminatedCol;
+    @FXML private TableColumn courtOrderedCol;
     @FXML private TableView<Contract> allContractsTable;
     private Contract contract;
     private Connection connection;
@@ -49,6 +50,7 @@ public class viewAllContractsController implements Initializable {
         clientNameCol.setCellValueFactory(new PropertyValueFactory<>("clientName"));
         dateStartedCol.setCellValueFactory(new PropertyValueFactory<>("dateStarted"));
         dateTerminatedCol.setCellValueFactory(new PropertyValueFactory<>("dateTerminated"));
+        courtOrderedCol.setCellValueFactory(new PropertyValueFactory<>("courtOrdered"));
 
 
 
@@ -69,6 +71,7 @@ public class viewAllContractsController implements Initializable {
                     contract.setCounselorName(rs.getString("fullCounName"));
                     contract.setDateStarted(rs.getDate("dateStarted"));
                     contract.setDateTerminated(rs.getDate("dateTerminated"));
+                    contract.setCourtOrdered(rs.getString("courtOrdered"));
                     contractData.add(contract);
                 }
 

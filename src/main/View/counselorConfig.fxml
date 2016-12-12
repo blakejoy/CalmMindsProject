@@ -78,8 +78,6 @@
                                     </Label>
                                     <Label layoutX="62.0" layoutY="304.0" text="Degree:" />
                                     <Label fx:id="degreeLbl" layoutX="122.0" layoutY="304.0" text="Degree Type and Level" />
-                                    <Label layoutX="26.0" layoutY="330.0" text="Years of Exp:" />
-                                    <Label fx:id="yearsOfExpLbl" layoutX="123.0" layoutY="331.0" text="Years" />
                                     <Label layoutX="253.0" layoutY="147.0" text="Availability:" />
                                     <TextField fx:id="availabilityTxtField" layoutX="329.0" layoutY="142.0" />
                                     <DatePicker fx:id="dateOfBirthPicker" layoutX="571.0" layoutY="142.0" prefHeight="27.0" prefWidth="132.0" />
@@ -109,7 +107,7 @@
                               <TableView fx:id="scheduleTable" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
                                   <TableColumn fx:id="sessionDateCol" prefWidth="112.0" text="Session Date" />
-                                  <TableColumn fx:id="clientNameSessCol" prefWidth="121.0" text="Counselor Name" />
+                                  <TableColumn fx:id="clientNameSessCol" prefWidth="121.0" text="Client Name" />
                                     <TableColumn fx:id="availabilityCol" prefWidth="121.0" text="Availibility" />
                                     <TableColumn fx:id="sessionTypeCol" prefWidth="121.0" text="Session Type" />
                                     <TableColumn fx:id="therapyTypeCol" prefWidth="121.0" text="Therapy Type" />
@@ -122,9 +120,9 @@
                   </TabPane>
                   <Button fx:id="searchBtn" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchBySSNorID" text="Search" />
                   <TextField fx:id="counselorSSN" layoutX="177.0" layoutY="10.0" promptText="###-###-#####" />
-                  <Label layoutX="103.0" layoutY="15.0" text="SSN or ID#:" />
+                  <Label layoutX="146.0" layoutY="15.0" text="SSN:" />
                   <Label fx:id="message" layoutX="13.0" layoutY="566.0" text="Error Info" />
-                  <Button layoutX="13.0" layoutY="10.0" mnemonicParsing="false" text="Main Menu" />
+                  <Button fx:id="refreshBtn" layoutX="13.0" layoutY="10.0" mnemonicParsing="false" text="Refresh" />
                   <Button fx:id="deleteBtn" layoutX="655.0" layoutY="10.0" mnemonicParsing="false" onAction="#removeCounselor" text="Delete" />
                   <Button fx:id="addBtn" layoutX="516.0" layoutY="10.0" mnemonicParsing="false" onAction="#addCounselor" prefHeight="27.0" prefWidth="58.0" text="Add" />
                   <Button fx:id="clearBtn" layoutX="412.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearData" text="Clear" />

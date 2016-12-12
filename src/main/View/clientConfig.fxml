@@ -23,9 +23,9 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="394.0">
                <children>
-                  <TabPane layoutX="-3.0" layoutY="44.0" prefHeight="514.0" prefWidth="718.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="clientTabPane" layoutX="-3.0" layoutY="44.0" prefHeight="514.0" prefWidth="718.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Information">
+                      <Tab fx:id="infoTab" text="Information">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -80,11 +80,12 @@
                                     <Label fx:id="contractEndLbl" layoutX="464.0" layoutY="324.0" text="Label" />
                                     <DatePicker fx:id="dateOfBirthPicker" layoutX="326.0" layoutY="142.0" prefHeight="27.0" prefWidth="182.0" />
                                     <Label fx:id="counselorNameLbl1" layoutX="238.0" layoutY="147.0" text="Date of Birth:" />
+                                    <Button layoutX="400.0" layoutY="388.0" mnemonicParsing="false" onAction="#counselorAssignmentAlert" text="Assign New Counselor" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
-                      <Tab text="History">
+                      <Tab fx:id="historyTab" text="History">
                            <content>
                               <TableView fx:id="clientHistoryTable" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
@@ -96,7 +97,7 @@
                               </TableView>
                            </content>
                         </Tab>
-                        <Tab text="Schedule">
+                        <Tab fx:id="scheduleTab" text="Schedule">
                            <content>
                               <TableView fx:id="scheduleTable" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
@@ -126,6 +127,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="384.0">
                <children>
                   <TextArea fx:id="queryResults" prefHeight="504.0" prefWidth="357.0" />
+                  <Button fx:id="addSessionBtn" layoutX="90.0" layoutY="529.0" mnemonicParsing="false"  text="Add New Session" visible="false" />
                </children>
             </AnchorPane>
         </items>

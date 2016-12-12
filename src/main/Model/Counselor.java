@@ -75,4 +75,9 @@ private String availability;
     public void setYearsOfExp(int yearsOfExp){
         this.yearsOfExp = yearsOfExp;
     }
+
+    @Override
+    public String toString(){
+       return this.counselorID + ": " + this.firstName + " " +  this.middleInit + " " +  this.lastName;
+    }
 }

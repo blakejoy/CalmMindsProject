@@ -7,9 +7,9 @@ import java.sql.Date;
  */
 public class Person {
    private int SSN;
-    private String firstName;
-    private String middleInit;
-    private String lastName;
+    protected String firstName;
+    protected String middleInit;
+    protected String lastName;
     private String sex;
     private String address;
     private String housePhoneNum;
@@ -107,4 +107,7 @@ public class Person {
     }
 
 
+    public String toString(){
+        return this.firstName + " " +  this.middleInit + " " +  this.lastName;
+    }
 }

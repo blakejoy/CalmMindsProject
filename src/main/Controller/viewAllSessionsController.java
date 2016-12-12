@@ -67,7 +67,7 @@ public class viewAllSessionsController implements Initializable {
 
 
         try{
-            String query = "SELECT sessions.*,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName,CONCAT_WS(' ',cp.fName,cp.lName) AS fullCounName FROM sessions,Person p,counselor ,Person cp WHERE sessions.clientSSN = p.SSN AND sessions.leadCounID=counselor.c_id AND counselor.SSN = cp.SSN ";
+            String query = "SELECT sessions.*,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName,CONCAT_WS(' ',cp.fName,cp.lName) AS fullCounName,client_attendance.violation FROM sessions,schedule,Person p,counselor ,Person cp,client_attendance WHERE schedule.clientSSN = p.SSN AND schedule.counID=counselor.c_id AND counselor.SSN = cp.SSN AND sessions.s_id = schedule.session_id AND client_attendance.sessionID = sessions.s_id ";
             PreparedStatement ps = connection.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();

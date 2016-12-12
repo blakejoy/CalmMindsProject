@@ -11,6 +11,7 @@ public class Contract {
     private Date dateStarted;
     private String counselorName;
     private String clientName;
+    private String courtOrdered;
 
     public Contract(){
 
@@ -56,4 +57,11 @@ public class Contract {
         this.clientName = clientName;
     }
 
+    public String getCourtOrdered() {
+        return courtOrdered;
+    }
+
+    public void setCourtOrdered(String courtOrdered) {
+        this.courtOrdered = courtOrdered;
+    }
 }

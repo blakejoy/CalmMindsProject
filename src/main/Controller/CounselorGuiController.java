@@ -415,7 +415,7 @@ if(counselorSSN.getText().length() < 9){
 
     @FXML public void updateContractInfo(){
         try{
-            String query = "SELECT ct.contractID,p.fName,p.mInit,p.lName,ct.dateTerminated, MAX(ct.dateStarted) AS dateStarted FROM bjoyne2db.counselor c,bjoyne2db.contract ct, bjoyne2db.Person p WHERE  ct.counID = c.c_id AND ct.clientSSN = p.SSN AND ct.counID = ? ORDER BY dateStarted DESC  ";
+            String query = "SELECT ct.contractID,p.fName,p.mInit,p.lName,ct.dateTerminated, MAX(ct.dateStarted) AS dateStarted FROM bjoyne2db.counselor c,bjoyne2db.contract ct, bjoyne2db.Person p WHERE  ct.counID = c.c_id AND ct.clientSSN = p.SSN AND ct.counID = ? ORDER BY dateStarted DESC ";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(counselor.getCounselorID()));
 
@@ -487,7 +487,7 @@ if(counselorSSN.getText().length() < 9){
        scheddata = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,violation,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName FROM schedule,Person p,sessions WHERE session_id = s_id AND sessions.clientSSN = p.SSN AND sessions.leadCounID = ?";
+            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,client_attendance.violation,CONCAT_WS(' ',p.fName,p.lName) AS fullClientName FROM schedule,Person p,sessions,client_attendance WHERE session_id = sessions.s_id AND schedule.clientSSN = p.SSN AND client_attendance.sessionID = sessions.s_id AND schedule.counID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(counselor.getCounselorID()));
 
@@ -551,6 +551,17 @@ if(counselorSSN.getText().length() < 9){
 
     }
 }
+
+
+    public void refreshData(ActionEvent actionEvent){
+        updateCounselor(actionEvent);
+        populateContracts();
+        updateContractInfo();
+        populateCounselorSchedule();
+        updateFields(actionEvent);
+    }
+
+
 
 
 

@@ -5,9 +5,12 @@ package main.Controller;/**
 import com.sun.prism.paint.Paint;
 import com.sun.tools.javac.util.Name;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +29,7 @@ import javafx.stage.Stage;
 import main.Model.*;
 import main.Resources.DBConnect;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
@@ -84,8 +88,8 @@ public class ClientGuiController implements Initializable{
     @FXML private TableView<Schedule> scheduleTable;
     private ObservableList<ClientHistory> historydata;
     private ObservableList<Schedule> scheddata;
-
-
+    @FXML TabPane clientTabPane;
+@FXML Button addSessionBtn;
     /**
      *Intializes the connection, classes and table columns
      *
@@ -100,6 +104,8 @@ public class ClientGuiController implements Initializable{
      contract = new Contract();
      counselor = new Counselor();
      history = new ClientHistory();
+
+
 
         clientSex.setItems(FXCollections.observableArrayList("Select Sex", new Separator(), "Male", "Female")
 
@@ -119,6 +125,19 @@ public class ClientGuiController implements Initializable{
         therapyTypeCol.setCellValueFactory(new PropertyValueFactory<>("therapyType"));
         violationCol.setCellValueFactory(new PropertyValueFactory<>("violation"));
 
+       /*
+        clientTabPane.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Tab>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
+                        if(clientTabPane.getSelectionModel().getSelectedItem().getText().equals("Schedule")) {
+                            addSessionBtn.setVisible(true);
+                        }else{
+                            addSessionBtn.setVisible(false);
+                        }
+                    }
+                }
+        ); */
     }
 
 
@@ -165,7 +184,7 @@ public class ClientGuiController implements Initializable{
                populateTextBox();
                message.setText("Record added successfully!");
                ps.close();
-              // counselorAssignmentAlert(event);
+               counselorAssignmentAlert();
            }
 
 
@@ -502,7 +521,7 @@ public class ClientGuiController implements Initializable{
         scheddata = FXCollections.observableArrayList();
 
         try{
-            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,violation,CONCAT_WS(' ',p.fName,p.lName) AS fullCounName FROM schedule,Person p,sessions,counselor WHERE session_id = s_id AND counselor.c_id = sessions.leadCounID AND counselor.SSN = p.SSN AND sessions.clientSSN = ?";
+            String query = "SELECT schedule.availability,sessionType,therapyType,s_date,violation,CONCAT_WS(' ',p.fName,p.lName) AS fullCounName FROM schedule,Person p,sessions,counselor,client_attendance WHERE session_id = s_id AND counselor.c_id = schedule.counID AND counselor.SSN = p.SSN AND schedule.clientSSN = ? AND client_attendance.sessionID = sessions.s_id GROUP BY session_id";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, String.valueOf(client.getSSN()));
 
@@ -536,51 +555,55 @@ public class ClientGuiController implements Initializable{
     /**
      * Ideally supposed to assign a newly inserted client to a contract. Needs some work though.
      *
-     * @param event ignored
-     * @throws IOException
      */
 
-    //NEED to work on this. This is suppose to be able to assign a counselor to a newly added client.
-public void counselorAssignmentAlert(ActionEvent event) throws IOException{
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to assign a counselor to " +client.getFirstName() + " " + client.getLastName() + " now?",ButtonType.YES,ButtonType.NO);
-    alert.setTitle("Counselor Assignment");
-    alert.setHeaderText("Assign Counselor");
-    Optional<ButtonType> result = alert.showAndWait();
+public void counselorAssignmentAlert() {
 
-    if (result.get() == ButtonType.YES){
+    if (!clientSsn.getText().equals("") ) {
+
+        message.setTextFill(Color.BLACK);
+        message.setText("Changing client assignment....");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to assign a counselor to " + client.getFirstName() + " " + client.getLastName() + " now?", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Counselor Assignment");
+        alert.setHeaderText("Assign Counselor");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.YES) {
 
             try {
-               Parent root = FXMLLoader.load(getClass().getResource("../View/assignCounselor.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/View/assignCounselor.fxml"));
+                Parent root = (Parent) loader.load();
+                assignmentController controller = loader.<assignmentController>getController();
+                controller.setClientSSN(client.getSSN());
+
                 if (root != null) {
                     Stage stage = new Stage();
 
                     stage.setTitle("Counselor Window");
-                    stage.setScene(new Scene(root, 1027, 592));
+                    stage.setScene(new Scene(root, 402, 270));
                     stage.show();
                     // Hide this current window (if this is what you want)
                     //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
 
+        } else {
+            message.setTextFill(Color.RED);
+            message.setText("No client information provided!");
+
+        }
 
 
     }else{
 
-       alert.close();
-    }
-
-
 
     }
-
-/*
-public int getClientSSN(int clientSSN){
-      return clientSSN;
 }
-*/
+
+
 
 
     /**
@@ -634,6 +657,54 @@ public void clearData(){
 }
 
 
+
+/*
+public void addNewSession(ActionEvent event){
+    if (!clientSsn.getText().equals("") ) {
+
+        message.setTextFill(Color.BLACK);
+        message.setText("Adding Client Session....");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to create a new session for " + client.getFirstName() + " " + client.getLastName() + " now?", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Session Assignment");
+        alert.setHeaderText("Assign New Session");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.YES) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/View/addNewSession.fxml"));
+                Parent root = (Parent) loader.load();
+                sessionController controller = loader.<sessionController>getController();
+                controller.setClientSSN(client.getSSN());
+                controller.setCounselorID(counselorIDLbl.getText());
+                if (root != null) {
+                    Stage stage = new Stage();
+
+                    stage.setTitle("Session Window");
+                    stage.setScene(new Scene(root, 402, 270));
+                    stage.show();
+                    // Hide this current window (if this is what you want)
+                    //((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else {
+            message.setTextFill(Color.RED);
+            message.setText("No client information provided!");
+
+        }
+
+
+    }else{
+
+
+    }
+
+}
+*/
 
 
 }
