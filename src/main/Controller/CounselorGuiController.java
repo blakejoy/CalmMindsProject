@@ -86,7 +86,6 @@ public class CounselorGuiController implements Initializable{
      connection = DBConnect.getConnection();
      counselor = new Counselor();
      client = new Client();
-     counselor = new Counselor();
      contract = new Contract();
         counselorSex.setItems(FXCollections.observableArrayList("Select Sex", new Separator(), "Male", "Female")
 
@@ -154,6 +153,9 @@ public class CounselorGuiController implements Initializable{
                ps.setDate(2,java.sql.Date.valueOf(today) );
                ps.setInt(3, 0);
                ps.setString(4, counselor.getAvailability());
+               ps.executeUpdate();
+
+
 
                populateTextBox();
 
@@ -247,26 +249,22 @@ public class CounselorGuiController implements Initializable{
      * @param actionEvent updates fields in the form
      */
    @FXML public void searchBySSNorID(ActionEvent actionEvent) {
-if(counselorSSN.getText().length() < 9){
-    counselor.setCounselorID(Integer.parseInt(counselorSSN.getText()));
 
-}else{
-    counselor.setSSN(Integer.parseInt(counselorSSN.getText()));
-
-}
+       String counselorSSNText = counselorSSN.getText();
        if (!counselorSSN.equals("")) {
 
            try {
-               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? OR c.c_id = ? ";
+               String query = "SELECT p.*,c.availability,c.c_id,c.hireDate FROM Person p, counselor c WHERE type = 'counselor' AND c.SSN = p.SSN AND p.SSN = ? ";
                PreparedStatement ps = connection.prepareStatement(query);
-               ps.setString(1, String.valueOf(counselor.getSSN()));
-               ps.setString(2, String.valueOf(counselor.getCounselorID()));
+               ps.setString(1, counselorSSNText);
+
 
 
                ResultSet rs = ps.executeQuery();
                if (rs != null && rs.next()) {
 
                    do{
+
                        counselor.setSSN(rs.getInt("SSN"));
                        counselor.setFirstName(rs.getString("fName"));
                        counselor.setMiddleInit(rs.getString("mInit"));
@@ -403,7 +401,7 @@ if(counselorSSN.getText().length() < 9){
         }else{
             message.setText("Not a valid choice!");
         }
-
+      counselor.setAvailability(availabilityTxtField.getText());
     }
 
 

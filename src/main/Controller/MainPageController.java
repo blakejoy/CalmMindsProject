@@ -23,7 +23,7 @@ public class MainPageController {
     public void activateCounselorGui(ActionEvent actionEvent) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("../View/counselorConfig.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/main/View/counselorConfig.fxml"));
             if (root != null) {
                 Stage stage = new Stage();
                 stage.setTitle("Counselor Window");
